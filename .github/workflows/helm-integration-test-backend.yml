@@ -110,16 +110,13 @@ jobs:
           cd ${{ inputs.component }}
           make integration-test API_GATEWAY_URL=localhost:${API_GATEWAY_PORT}
 
-  helm-integration-test-latest-mac:
+  helm-integration-test-latest-macos:
     if: false
     # disable the mac test temporary
     # if: inputs.target == 'latest' && github.ref == 'refs/heads/main'
     runs-on: [self-hosted, macOS, vdp]
     timeout-minutes: 60
     steps:
-      - name: Cancel Previous Runs
-        uses: styfle/cancel-workflow-action@0.12.0
-
       - name: Set up environment
         run: |
           brew install make
@@ -229,16 +226,13 @@ jobs:
           cd ${{ inputs.component }}
           make integration-test API_GATEWAY_URL=localhost:${API_GATEWAY_PORT}
 
-  helm-integration-test-release-mac:
+  helm-integration-test-release-macos:
     if: false
     # disable the mac test temporary
     # if: inputs.target == 'release'
     runs-on: [self-hosted, macOS, vdp]
     timeout-minutes: 60
     steps:
-      - name: Cancel Previous Runs
-        uses: styfle/cancel-workflow-action@0.12.0
-
       - name: Set up environment
         run: |
           brew install make

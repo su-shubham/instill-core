@@ -82,16 +82,13 @@ jobs:
         run: |
           make down
 
-  integration-test-latest-mac:
+  integration-test-latest-macos:
     if: false
     # disable the mac test temporary
     # if: inputs.target == 'latest'
     runs-on: [self-hosted, macOS, core]
     timeout-minutes: 120
     steps:
-      - name: Cancel Previous Runs
-        uses: styfle/cancel-workflow-action@0.12.0
-
       - name: remove existing docker container
         run: |
           docker rm -f $(docker ps -a -q) || true
@@ -125,8 +122,7 @@ jobs:
         uses: actions/checkout@v3
         with:
           repository: instill-ai/instill-core
-          fetch-depth: 5 # fetch the commit with tag
-          fetch-tags: true
+          fetch-depth: 0 # fetch the commit with tag
 
       - name: Load .env file
         uses: cardinalby/export-env-action@v2
@@ -176,16 +172,13 @@ jobs:
         run: |
           make down
 
-  integration-test-release-mac:
+  integration-test-release-macos:
     if: false
     # disable the mac test temporary
     # if: inputs.target == 'release'
     runs-on: [self-hosted, macOS, core]
     timeout-minutes: 60
     steps:
-      - name: Cancel Previous Runs
-        uses: styfle/cancel-workflow-action@0.12.0
-
       - name: remove existing docker container
         run: |
           docker rm -f $(docker ps -a -q) || true
